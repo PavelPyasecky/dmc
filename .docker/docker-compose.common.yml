@@ -1,0 +1,35 @@
+services:
+    client:
+      build:
+        context: ./delorean
+        dockerfile: ./Dockerfile
+      ports:
+        - 3000:3000
+      depends_on:
+        - server
+
+    server:
+       build:
+         context: ./dmc
+         dockerfile: ./Dockerfile
+       command: python manage.py runserver 0.0.0.0:8000
+       volumes:
+         - ./dmc:/usr/src/app
+       ports:
+         - 8000:8000
+       env_file:
+         - ./dmc/.env.dev
+       depends_on:
+         - db
+
+    db:
+      image: postgres
+      environment:
+        POSTGRES_USER: "postgres"
+        POSTGRES_PASSWORD: "postgres"
+        POSTGRES_DB: "postgres"
+      volumes:
+        - "postgres_data:/var/lib/postgresql/data"
+
+volumes:
+  postgres_data:
