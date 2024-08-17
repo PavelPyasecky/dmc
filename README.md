@@ -35,11 +35,11 @@ Linux OS:
 
 - download *delorean* client repository 
     ```bash
-  git clone ...
+  git clone git@github.com:PavelPyasecky/delorean.git
     ```
 - download *dmc* server repository 
     ```bash
-  git clone ...
+  git clone git@github.com:PavelPyasecky/dmc.git
     ```
 
 - create symlinks
