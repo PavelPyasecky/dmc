@@ -2,8 +2,7 @@ import graphene
 from graphql_auth.schema import UserQuery, MeQuery
 
 import consumables.schema_relay
-import vehicle.schema
-
+import vehicle.schema_relay
 import users.schema
 
 from graphql_auth import relay
@@ -30,11 +29,11 @@ class AuthMutation(graphene.ObjectType):
     revoke_token = relay.RevokeToken.Field()
 
 
-class Query(UserQuery, MeQuery, vehicle.schema.Query, consumables.schema_relay.Query, graphene.ObjectType):
+class Query(UserQuery, MeQuery, vehicle.schema_relay.Query, consumables.schema_relay.Query, graphene.ObjectType):
     pass
 
 
-class Mutation(AuthMutation, users.schema.Mutation, vehicle.schema.Mutation, consumables.schema_relay.Mutation,
+class Mutation(AuthMutation, users.schema.Mutation, vehicle.schema_relay.Mutation, consumables.schema_relay.Mutation,
                graphene.ObjectType):
     pass
 
