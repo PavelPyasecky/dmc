@@ -34,12 +34,7 @@ class CreateUser(graphene.Mutation):
         email = graphene.String(required=True)
 
     def mutate(self, info, username, password, email):
-        user = get_user_model()(
-            username=username,
-            email=email,
-        )
-        user.set_password(password)
-        user.save()
+        user = UserCreator(username=username, password=password, email=email).create_user()
 
         return CreateUser(user=user)
 
@@ -49,10 +44,10 @@ class Mutation(graphene.ObjectType):
 
 
 class UserCreator:
-    def __init__(self, username, email, password):
+    def __init__(self, username, password, email):
         self.username = username
-        self.email = email
         self.password = password
+        self.email = email
 
     def create_user(self):
         user = get_user_model()(
