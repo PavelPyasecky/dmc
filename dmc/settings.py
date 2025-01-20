@@ -172,6 +172,21 @@ GRAPHQL_JWT = {
     'LOGIN_ALLOWED_FIELDS': ['email', 'username'],
 }
 
+GRAPHQL_AUTH = {
+    "ALLOW_LOGIN_NOT_VERIFIED": False,
+    "SEND_ACTIVATION_EMAIL": True,  # default True
+
+    "EMAIL_TEMPLATE_ACTIVATION": BASE_DIR / "users/templates/activation_email.html",
+    "EMAIL_TEMPLATE_ACTIVATION_RESEND": BASE_DIR / "users/templates/activation_email.html",
+    "EMAIL_SUBJECT_ACTIVATION": BASE_DIR / "users/templates/activation_subject.txt",
+    "EMAIL_SUBJECT_ACTIVATION_RESEND": BASE_DIR / "users/templates/activation_subject.txt",
+
+    "EMAIL_TEMPLATE_VARIABLES": {
+        "domain": "localhost:3000",
+        "HELLO_PHRASE": "We are nice to meet you in our service!",
+    }
+}
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
@@ -180,4 +195,12 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+DEFAULT_FROM_EMAIL = "pyasecky2012pavel@gmail.com"
+EMAIL_HOST_USER = "pyasecky2012pavel@gmail.com"
+EMAIL_HOST_PASSWORD = "udqm2Qqw"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST = "pro.eu.turbo-smtp.com"
