@@ -199,8 +199,8 @@ AUTH_USER_MODEL = 'users.CustomUser'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 DEFAULT_FROM_EMAIL = "pyasecky2012pavel@gmail.com"
-EMAIL_HOST_USER = "pyasecky2012pavel@gmail.com"
-EMAIL_HOST_PASSWORD = "udqm2Qqw"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST = "pro.eu.turbo-smtp.com"
