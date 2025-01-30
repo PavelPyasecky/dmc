@@ -30,6 +30,7 @@ class CreateSpares(relay.ClientIDMutation):
         name = graphene.String()
         count = graphene.Int()
         cost = graphene.Float()
+        installation_date = graphene.Date()
 
     @classmethod
     def mutate_and_get_payload(cls, root, info, **input):
@@ -51,6 +52,7 @@ class UpdateSpare(relay.ClientIDMutation):
         name = graphene.String()
         count = graphene.Int()
         cost = graphene.Float()
+        installation_date = graphene.Date()
 
     @classmethod
     def mutate_and_get_payload(cls, root, info, **input):
